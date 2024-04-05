@@ -1,47 +1,28 @@
 import * as React from 'react';
-import {
-  GaugeContainer,
-  GaugeValueArc,
-  GaugeReferenceArc,
-  useGaugeState,
-} from '@mui/x-charts/Gauge';
+import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
 
-function GaugePointer() {
-  const { valueAngle, outerRadius, cx, cy } = useGaugeState();
+const settings = {
+  width: 200,
+  height: 200,
+  value: 720,
+};
 
-  if (valueAngle === null) {
-    // No value to display
-    return null;
-  }
-
-  const target = {
-    x: cx + outerRadius * Math.sin(valueAngle),
-    y: cy - outerRadius * Math.cos(valueAngle),
-  };
+export default function ArcDesign() {
   return (
-    <g>
-      <circle cx={cx} cy={cy} r={5} fill="red" />
-      <path
-        d={`M ${cx} ${cy} L ${target.x} ${target.y}`}
-        stroke="orange"
-        strokeWidth={3}
-      />
-    </g>
-  );
-}
-
-export default function CompositionExample() {
-  return (
-    <GaugeContainer
-      width={200}
-      height={200}
-      startAngle={-110}
-      endAngle={110}
-      value={70}
-    >
-      <GaugeReferenceArc />
-      <GaugeValueArc />
-      <GaugePointer />
-    </GaugeContainer>
+    <Gauge
+      {...settings}
+      cornerRadius="50%"
+      sx={(theme) => ({
+        [`& .${gaugeClasses.valueText}`]: {
+          fontSize: 40,
+        },
+        [`& .${gaugeClasses.valueArc}`]: {
+          fill: '#52b202',
+        },
+        [`& .${gaugeClasses.referenceArc}`]: {
+          fill: theme.palette.text.disabled,
+        },
+      })}
+    />
   );
 }

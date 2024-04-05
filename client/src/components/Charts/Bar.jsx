@@ -91,7 +91,7 @@ const dataset = [
   },
 ];
 
-const valueFormatter = (value) => `${value}mm`;
+const valueFormatter = (value) => `${value}`;
 
 export default function BarsDataset() {
   return (
@@ -99,9 +99,9 @@ export default function BarsDataset() {
       dataset={dataset}
       xAxis={[{ scaleType: 'band', dataKey: 'month' }]}
       series={[
-        { dataKey: 'expenditure', label: 'Exp', valueFormatter },
-        { dataKey: 'investments', label: 'Inv', valueFormatter },
-        { dataKey: 'savings', label: 'Sav', valueFormatter },
+        { dataKey: 'expenditure', label: 'Expenditure', valueFormatter },
+        { dataKey: 'investments', label: 'Investments', valueFormatter },
+        { dataKey: 'savings', label: 'Savings', valueFormatter },
       ]}
       {...chartSetting}
     />
